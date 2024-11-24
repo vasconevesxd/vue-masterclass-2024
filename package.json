@@ -21,10 +21,12 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
+    "@vueuse/core": "^11.3.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-var": "^1.1.0",
     "dotenv-cli": "^7.4.2",
+    "iconify-icon": "^2.1.0",
     "lucide-vue-next": "^0.460.0",
     "pinia": "^2.2.4",
     "radix-vue": "^1.9.10",
