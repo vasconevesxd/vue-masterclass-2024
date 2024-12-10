@@ -34,6 +34,7 @@ const seedProjects = async numEntries => {
     projects.push({
       name,
       slug: faker.helpers.slugify(name),
+      description: faker.lorem.paragraphs(2),
       status: faker.helpers.arrayElement(['in-progress', 'completed']),
       collaborators: faker.helpers.arrayElements([1, 2, 3]),
     })
