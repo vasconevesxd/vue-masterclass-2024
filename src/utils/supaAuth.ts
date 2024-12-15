@@ -7,9 +7,7 @@ export const login = async (formData: LoginForm) => {
     password: formData.password,
   })
 
-  if (error) return console.log(error)
-
-  return true
+  return { error }
 }
 
 export const register = async (formData: RegisterForm) => {
@@ -28,6 +26,14 @@ export const register = async (formData: RegisterForm) => {
 
     if (error) return console.log('Profiles err: ', error)
   }
+
+  return true
+}
+
+export const logout = async () => {
+  const { error } = await supabase.auth.signOut()
+
+  if (error) return console.log(error)
 
   return true
 }
