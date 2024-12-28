@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { type Project, projectQuery } from '@/utils/supaQueries'
+import AppInPlaceEditText from '@/components/AppInPlaceEdit/AppInPlaceEditText.vue'
 
-const route = useRoute('/projects/[slug]')
+const { slug } = useRoute('/projects/[slug]').params
 
-const project = ref<Project | null>(null)
+const projectsLoader = useProjectsStore()
+const { project } = storeToRefs(projectsLoader)
+const { getProject, updateProject } = projectsLoader
 
 watch(
   () => project.value?.name,
@@ -11,23 +13,18 @@ watch(
     usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
   },
 )
-
-const getProjects = async () => {
-  const { data, error } = await projectQuery(route.params.slug)
-
-  if (error) console.log(error)
-
-  project.value = data
-}
-
-await getProjects()
+const router = useRouter()
+console.log(router.getRoutes())
+await getProject(slug)
 </script>
 
 <template>
   <Table v-if="project">
     <TableRow>
       <TableHead> Name </TableHead>
-      <TableCell> {{ project.name }} </TableCell>
+      <TableCell>
+        <AppInPlaceEditText v-model="project.name" @commit="updateProject" />
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
