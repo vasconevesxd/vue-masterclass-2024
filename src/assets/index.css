@@ -76,3 +76,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: transform 0.1s;
+}
+.scale-enter-form,
+.scale-leave-to {
+  transform: scale(0.3);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-form,
+.fade-leave-to {
+  opacity: 0;
+}
